@@ -1,0 +1,16 @@
+.MenuTogle{
+position: fixed;
+    top: 40px;
+    left: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: opacity, left .22s ease-in-out;
+    z-index: 100;
+}
+.MenuTogle:hover{
+    opacity: .7;
+}
+.MenuTogle.isOpen{
+    left: 430px;
+}
