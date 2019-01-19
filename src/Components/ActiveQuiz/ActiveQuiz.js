@@ -5,11 +5,11 @@ const ActiveQuiz = (props) => (
     <div className={classes.ActiveQuiz}>
         <p className={classes.Question}>
             <span>
-                <strong>{props.activeQuestion + 1}.</strong>&nbsp;
+                <strong>{props.answerNumber}.</strong>&nbsp;
                 {props.question}
 
             </span>
-            <small>{props.activeQuestion + 1} from {props.quizLength}</small>
+            <small>{props.answerNumber} from {props.quizLength }</small>
         </p>
         <AnswersList
             answers={props.answers}

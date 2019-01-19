@@ -3,6 +3,7 @@ import classes from './Auth.css'
 import Button from '../../Components/UI/Button/Button'
 import Input from '../../Components/UI/Input/Input'
 import is from 'is_js'
+import axios from 'axios'
 
 class Auth extends Component {
 
@@ -35,10 +36,33 @@ class Auth extends Component {
           }
       }
   };
-    loginHandler = ()=>{
-
+    loginHandler = async ()=>{
+        try{
+            const auth = {
+                email: this.state.formControls.email.value,
+                password: this.state.formControls.password.value,
+                returnSecureToken: true
+            };
+            const response = await axios.post("https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyDrZdE7bKJHijuicQND_gvnk5qfJoN8PLw", auth);
+            console.log(response.data);
+        }
+        catch(e){
+            console.log(e);
+        }
     };
-    registerHandler = ()=>{
+    registerHandler = async ()=>{
+        try{
+            const auth = {
+                email: this.state.formControls.email.value,
+                password: this.state.formControls.password.value,
+                returnSecureToken: true
+            };
+            const response = await axios.post("https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyDrZdE7bKJHijuicQND_gvnk5qfJoN8PLw", auth);
+            console.log(response.data);
+        }
+        catch(e){
+            console.log(e);
+        }
 
     };
     submitHandler = (event)=>{

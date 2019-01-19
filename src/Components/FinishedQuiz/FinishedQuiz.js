@@ -31,7 +31,7 @@ const FinishedQuiz = (props)=>{
                 }
             </ul>
             <p>Right {successCount} from {props.quiz.length}</p>
-            <Button onClick={props.retry} type='primary'>Retry</Button>
+            <Button onClick={props.onRetry} type='primary'>Retry</Button>
             <Link to='/'>
                 <Button type='succsess'>List of questions</Button>
             </Link>
