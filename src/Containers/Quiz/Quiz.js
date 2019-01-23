@@ -4,56 +4,13 @@ import ActiveQuiz from '../../Components/ActiveQuiz/ActiveQuiz'
 import FinishedQuiz from '../../Components/FinishedQuiz/FinishedQuiz'
 import Loader from '../../Components/UI/Loader/Loader'
 import {connect} from 'react-redux'
-import {fetchQuizById} from '../../store/actions/quiz'
+import {fetchQuizById, quizAnswerClick} from '../../store/actions/quiz'
 
 class Quiz extends Component {
 
-    onAnswerClickHandler = answerId => {
-        if (this.state.answerState) {
-            const key = Object.keys(this.state.answerState)[0];
-            if (this.state.answerState[key] === 'success') {
-                return
-            }
-        }
-
-        const question = this.state.quiz[this.state.activeQuestion];
-        const results = this.state.results;
-
-        if (question.rightAnswerId === answerId) {
-            if (!results[question.id]) {
-                results[question.id] = 'success'
-            }
-
-            this.setState({
-                answerState: {[answerId]: 'success'},
-                results
-            });
-
-            const timeout = window.setTimeout(() => {
-                if (this.isQuizFinished()) {
-                    this.setState({
-                        isFinished: true
-                    })
-                } else {
-                    this.setState({
-                        activeQuestion: this.state.activeQuestion + 1,
-                        answerState: null
-                    })
-                }
-                window.clearTimeout(timeout)
-            }, 1000)
-        } else {
-            results[question.id] = 'error';
-            this.setState({
-                answerState: {[answerId]: 'error'},
-                results
-            })
-        }
-    };
-
-    isQuizFinished() {
-        return this.state.activeQuestion + 1 === this.state.quiz.length
-    }
+    // isQuizFinished() {
+    //     return this.state.activeQuestion + 1 === this.state.quiz.length
+    // }
 
     retryHandler = () => {
         this.setState({
@@ -86,7 +43,7 @@ class Quiz extends Component {
                             : <ActiveQuiz
                                 answers={this.props.quiz[this.props.activeQuestion].answers}
                                 question={this.props.quiz[this.props.activeQuestion].question}
-                                onAnswerClick={this.onAnswerClickHandler}
+                                onAnswerClick={this.props.quizAnswerClick}
                                 quizLength={this.props.quiz.length}
                                 answerNumber={this.props.activeQuestion + 1}
                                 state={this.props.answerState}
