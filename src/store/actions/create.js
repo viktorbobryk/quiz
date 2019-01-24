@@ -1,22 +1,22 @@
-import {CREATE_QUIZ_QUESTION,
-        RESET_QUIZ_CREATION
-} from "./actionTypes";
-import axios from '../../axios/axios-quiz';
+import {CREATE_QUIZ_QUESTION, RESET_QUIZ_CREATION} from './actionTypes'
+import axios from '../../axios/axios-quiz'
 
-export function createQuizQuestion(item){
+export function createQuizQuestion(item) {
     return {
         type: CREATE_QUIZ_QUESTION,
-        item: item
+        item
     }
 }
-export function resetQuizCreation(){
+
+export function resetQuizCreation() {
     return {
         type: RESET_QUIZ_CREATION
     }
 }
-export function finishCreateQuiz(){
+
+export function finishCreateQuiz() {
     return async (dispatch, getState) => {
-        await await axios.post('/quizes.json', getState().create.quiz);
-        dispatch(resetQuizCreation());
+        await axios.post('/quizes.json', getState().create.quiz);
+        dispatch(resetQuizCreation())
     }
 }
