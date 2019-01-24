@@ -70,7 +70,8 @@ export function fetchQuizesError(e){
 export function quizSetState(answerState, results){
     return {
         type: QUIZ_SET_STATE,
-        answerState, results
+        answerState: answerState,
+        results: results
     }
 }
 export function finishQuiz() {

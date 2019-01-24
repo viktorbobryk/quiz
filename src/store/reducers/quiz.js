@@ -4,7 +4,8 @@ import {
     FETCH_QUIZES_SUCCESS,
     FETCH_QUIZ_SUCCESS,
     QUIZ_SET_STATE,
-    FINISH_QUIZ, QUIZ_NEXT_QUESTION
+    FINISH_QUIZ,
+    QUIZ_NEXT_QUESTION
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -39,7 +40,7 @@ function quizReducer(state = initialState, action){
           };
       case QUIZ_SET_STATE:
           return {
-              ...state,  answerState: state.answerState, results: state.results
+              ...state,  answerState: action.answerState, results: action.results
           };
       case FINISH_QUIZ:
           return {
